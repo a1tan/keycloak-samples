@@ -1,0 +1,107 @@
+{
+  "id": "microcks",
+  "realm": "sample",
+  "displayName": "sample",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "users" : [
+    {
+      "username" : "admin",
+      "enabled": true,
+      "credentials" : [
+        { "type" : "password",
+          "value" : "sample123" }
+      ],
+      "realmRoles": [],
+      "applicationRoles": {
+        "realm-management": [ "manage-users", "manage-clients" ],
+        "account": [ "manage-account" ],
+        "sample-app": [ "admin "]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [],
+    "client": {
+      "sample-app": [
+        {
+          "name": "user",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "sample"
+        },
+        {
+          "name": "admin",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "sample"
+        },
+        {
+          "name": "manager",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "sample"
+        }
+      ]
+    }
+  },
+  "defaultRoles": [],
+  "requiredCredentials": [ "password" ],
+  "scopeMappings": [],
+  "clientScopeMappings": {
+    "sample-app": [
+      {
+        "client": "sample-app-js",
+        "roles": [
+          "manager",
+          "admin",
+          "user"
+        ]
+      }
+    ],
+    "realm-management": [
+      {
+        "client": "sample-app-js",
+        "roles": [
+          "manage-users",
+          "manage-clients"
+        ]
+      }
+    ]
+  },
+  "applications": [
+    {
+      "name": "sample-app",
+      "enabled": true,
+      "bearerOnly": true,
+      "defaultRoles": [
+        "user"
+      ]
+    },
+    {
+      "name": "sample-app-js",
+      "enabled": true,
+      "publicClient": true,
+      "webOrigins": [
+        "+"
+      ],
+      "redirectUris": [
+        "http://localhost:8084/*"
+      ],
+      "fullScopeAllowed": false
+    },
+    {
+      "name": "sample-serviceaccount",
+      "secret": "ab54d329-e435-41ae-a900-ec6b3fe15c54",
+      "enabled": true,
+      "bearerOnly": false,
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "clientAuthenticatorType": "client-secret"
+    }
+  ],
+  "keycloakVersion": "10.0.1"
+}

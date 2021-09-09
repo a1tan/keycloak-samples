@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  keycloak:
+    image: test/keycloak
+    container_name: keycloak
+    ports:
+      - "18080:8080"
+    environment:
+      DB_VENDOR: "H2"
+      KEYCLOAK_USER: "admin"
+      KEYCLOAK_PASSWORD: "admin"
+      KEYCLOAK_IMPORT: "/tmp/sample-realm.json"
+      KEYCLOAK_FRONTEND_URL: "http://localhost:18080/auth"
+    volumes: 
+      - "./keycloak-realm/sample-realm.json:/tmp/sample-realm.json"
