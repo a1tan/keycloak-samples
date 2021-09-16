@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   keycloak:
-    image: test/keycloak
+    image: quay.io/keycloak/keycloak:15.0.2
     container_name: keycloak
     ports:
       - "18080:8080"
